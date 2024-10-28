@@ -668,6 +668,10 @@ video {
   width: 100%;
 }
 
+.w-14 {
+  width: 3.5rem;
+}
+
 .max-w-sm {
   max-width: 24rem;
 }

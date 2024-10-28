@@ -5,5 +5,9 @@ body{
 }
 
 .header{
-    background-color: #e9edc9;
+    background-color: #f1faee;
+}
+
+.header-image{
+    width: 30vw;
 }
