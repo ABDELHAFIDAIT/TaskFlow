@@ -33,13 +33,13 @@
             </div>
         </header>
 
-        <main class="main">
+        <main class="main mx-20 my-0">
             <section
-                class="add-tasks flex justify-between items-center mx-20 my-0 py-10">
+                class="add-tasks flex justify-between items-center py-10">
                 <div class="add-task">
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Add Task +
+                        Ajouter une Tache +
                     </button>
                 </div>
 
@@ -58,12 +58,30 @@
                 <div class="add-multiple-tasks">
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Add Multiple Tasks +
+                        Ajouter Multiple Taches +
                     </button>
                 </div>
             </section>
 
-            
+            <section class="filter-sort flex justify-end items-center py-10">
+                <div class="filter">
+                    <label for="filter">Filter</label>
+                    <select name="filter" id="filter-select">
+                        <option value="filter-option">Default</option>
+                        <option value="filter-option">Priorité 1</option>
+                        <option value="filter-option">Priorité 2</option>
+                        <option value="filter-option">Priorité 3</option>
+                    </select>
+                </div>
+                <div class="sort  ml-10">
+                    <label for="sort" class="mr-10">Trier</label>
+                    <select name="sort" id="sort-select">
+                        <option value="sort-option">Default</option>
+                        <option value="sort-option">Priorité</option>
+                        <option value="sort-option">Date d'Echéance</option>
+                    </select>
+                </div>
+            </section>
         </main>
     </body>
 </html>
