@@ -11,3 +11,14 @@ body{
 .header-image{
     width: 30vw;
 }
+
+.search-input,
+.search-btn,
+.sort-select,
+.filter-select{
+    padding: 0.5rem 1rem;
+}
+
+.search-btn{
+    background-color: rgb(0, 128, 255);
+}
