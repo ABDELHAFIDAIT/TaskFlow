@@ -6,7 +6,7 @@
 
         <!-- CSS files -->
         <link rel="stylesheet" href="../assets/css/style.css">
-        <!-- <link rel="stylesheet" href="../assets/css/output.css"> -->
+        <link rel="stylesheet" href="../assets/css/output.css">
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet">
@@ -60,27 +60,32 @@
                 </div>
             </section>
 
-            <section id="add-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-                <div class="add-task-popup bg-blue-950 px-10 pt-2 pb-5 rounded-md">
-                    <form class="flex flex-col gap-3">
-                        <label for="titre" class="ml-3 mt-2 font-medium text-white">Titre</label>
-                        <input type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm border-none outline-none">
+            <section id="add-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
+                <div class="add-task-popup bg-white px-10 pt-8 pb-5 rounded-md">
+                    <h1 class="text-center mb-5 font-medium text-xl">Ajouter une Nouvelle Tache</h1>
+                    <form id="add-task-form" class="flex flex-col gap-4">
                         
-                        <label for="priority" class="ml-3 mt-2 font-medium text-white">Niveau de Priorité</label>
-                        <select name="priority" id="priority-select" class="h-10 px-5 rounded-sm border-none outline-none">
+                        <input type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600">
+                        
+                        <textarea name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600"></textarea>
+
+                        <select name="status" id="status-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
+                            <option>To Do</option>
+                            <option>Doing</option>
+                            <option>Done</option>
+                        </select>
+
+                        <select name="priority" id="priority-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
                             <option>Priorité 1</option>
                             <option>Priorité 2</option>
                             <option>Priorité 3</option>
                         </select>
+
+                        <input type="date" name="date" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
+
+                        <button id="btn-add-task" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Ajoute la Tache</button>
                         
-                        <label for="date" class="ml-3 mt-2 font-medium text-white">Date d'Echéance</label>
-                        <input type="date" name="date" class="h-10 px-5 rounded-sm border-none outline-none">
-                        
-                        <label for="description" class="ml-3 mt-2 font-medium text-white">Description</label>
-                        <textarea name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2"></textarea>
-                        
-                        <button onclick="closePopup()" type="button" class="h-10 mt-5 font-medium bg-red-600 text-white">Annuler</button>
-                        <button onclick="closePopup()" type="button" class="h-10 font-medium bg-green-600 text-white">Ajoute la Tache</button>
+                        <button onclick="closePopup()" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
                     </form>
                 </div>
             </section>
@@ -114,8 +119,21 @@
                         <h1 class="font-semibold">1</h1>
                     </div>
                     <div class="to-do-tasks h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
-                        <div class="task-card bg-white h-28 m-2 rounded-md border-l-8 border-red-600">
+                        <div class="task-card bg-white h-36 m-2 rounded-md border-l-8 border-red-600 flex flex-col justify-between p-3">
+                            <h1 class="font-medium cursor-pointer">Titre de la Tache 1</h1>
+                            
+                            <div class="flex items-center gap-5">
+                                <svg width="24px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M960 224v608c0 35.3-28.7 64-64 64H128c-35.3 0-64-28.7-64-64V224c0-17.7 14.3-32 32-32h832c17.7 0 32 14.3 32 32z" fill="#3D5AFE"></path><path d="M832 480.2c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h576c17.7 0 32 14.4 32 32zM832 672.2c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h576c17.7 0 32 14.4 32 32z" fill="#FFEA00"></path><path d="M224 319.8c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32v127.8c0 17.7-14.3 32-32 32zM800 319.8c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32v127.8c0 17.7-14.3 32-32 32z" fill="#536DFE"></path><path d="M660.8 704.3H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h461.4c12.1-40.6 18.6-83.5 18.6-128H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h475.5c-14.2-99.8-61.3-189-130-256.3H256v95.8c0 17.7-14.3 32-32 32s-32-14.3-32-32V192H96c-17.7 0-32 14.3-32 32v608c0 35.3 28.7 64 64 64h358.9c75.1-45.2 135.9-112 173.9-191.7z" fill="#536DFE"></path><path d="M192 480.3c0 17.7 14.3 32 32 32h480v-0.2c0-21.6-1.5-42.9-4.5-63.8H224c-17.7 0-32 14.3-32 32zM192 672.3c0 17.7 14.3 32 32 32h436.8c9.8-20.5 18-41.9 24.6-64H224c-17.7 0-32 14.3-32 32z" fill="#FFFF00"></path><path d="M192 287.8c0 17.7 14.3 32 32 32s32-14.3 32-32V192h-64v95.8z" fill="#8C9EFF"></path></g></svg>
+                                <h1>2024-10-30</h1>
+                            </div>
 
+                            <div class="flex justify-between">
+                                <h1 class="text-red-600 border-4 border-red-700 text-center font-semibold h-7 w-7">P1</h1>
+                                <div>
+                                    <button type="button" class="py-1 px-2 bg-yellow-500 rounded-sm">Modifier</button>
+                                    <button type="button" class="py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,15 +165,6 @@
 
         </main>
 
-        <script>
-            function openPopup() {
-                document.getElementById('add-task-popup').classList.remove('hidden');
-            }
-        
-            function closePopup() {
-                document.getElementById('add-task-popup').classList.add('hidden');
-            }
-        </script>
-        
+        <script src="../assets/js/popup.js"></script>
     </body>
 </html>
