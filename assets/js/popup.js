@@ -1,12 +1,17 @@
+// Fonction permettant d'ouvrir le Formulaire pour Ajouter une Tache
 function ouvrirPopup() {
     document.getElementById('add-task-popup').classList.remove('hidden');
 }
 
+
+// Fonction permettant de fermer le Formulaire d'Ajout d'une Tache lors de clique sur "Annuler" ou bien après la création de la tache
 function fermerPopup() {
     document.getElementById('add-task-popup').classList.add('hidden');
 }
 
-function creerCard(titre, priority, date , tache){
+
+//Fonction de Création du "div" d'une Nouvelle Tache
+function creerTache(titre, priority, date , tache){
     tache.className = "to-do-card bg-white h-36 m-2 rounded-md flex flex-col justify-between p-3";
         
     tache.innerHTML = `<h1 class="font-medium cursor-pointer">${titre}</h1>
@@ -20,11 +25,13 @@ function creerCard(titre, priority, date , tache){
                                 <h1>${priority}</h1>
                                 <div>
                                     <button type="button" class="py-1 px-2 bg-yellow-500 rounded-sm">Modifier</button>
-                                    <button type="button" class="py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
+                                    <button type="button" class="btn-delete py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
                                 </div>
                             </div>` ;
 }
 
+
+//Fonction permettant de définir le couleur de border-left selon la priorité de la tache
 function themePriority(priority, tache){
     if(priority == "P1"){
         tache.classList.add('border-l-8');
@@ -38,6 +45,8 @@ function themePriority(priority, tache){
     }
 }
 
+
+//Fonction permettant d'ajouter une Nouvelle Tache à la liste convenable (toDo, Doing, Done)
 function ajouterTache(){
     const tacheForm = document.getElementById("add-task-form");
     const titre = tacheForm['titre'].value;
@@ -47,38 +56,24 @@ function ajouterTache(){
     const date = tacheForm['date'].value;
 
     if(status == "To Do"){
-        const toDoList = document.getElementById('to-do-tasks');
-        const toDoTache = document.createElement('div');
-
-        creerCard(titre , priority , date, toDoTache);
-
-        toDoList.appendChild(toDoTache);
-        tacheForm.reset();
-        fermerPopup();
-
-        themePriority(priority , toDoTache);
-
+        var targetList = document.getElementById('to-do-tasks');
     }else if(status == "Doing"){
-        const doingList = document.getElementById('doing-tasks');
-        const doingTache = document.createElement('div');
-
-        creerCard(titre , priority , date, doingTache);
-
-        doingList.appendChild(doingTache);
-        tacheForm.reset();
-        fermerPopup();
-
-        themePriority(priority , doingTache);
+        var targetList = document.getElementById('doing-tasks');
     }else{
-        const doneList = document.getElementById('done-tasks');
-        const doneTache = document.createElement('div');
-
-        creerCard(titre , priority , date, doneTache);
-
-        doneList.appendChild(doneTache);
-        tacheForm.reset();
-        fermerPopup();
-
-        themePriority(priority , doneTache);
+        var targetList = document.getElementById('done-tasks');
     }
+
+    const task = document.createElement('div');
+
+    creerTache(titre , priority , date, task);
+
+    targetList.appendChild(task);
+    tacheForm.reset();
+    fermerPopup();
+
+    themePriority(priority , task);
+
+    deleteTask(task);
 }
+
+
