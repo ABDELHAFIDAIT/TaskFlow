@@ -39,7 +39,7 @@
             <!-- Section d'Ajout des Taches et Barre de Recherche -->
             <section class="add-tasks flex justify-between items-center py-10">
                 <div class="add-task">
-                    <button onclick="openPopup()"
+                    <button id="btn-add-task" onclick="ouvrirPopup()"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded">
                         Ajouter une Tache +
                     </button>
@@ -76,16 +76,16 @@
                         </select>
 
                         <select name="priority" id="priority-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
-                            <option>Priorité 1</option>
-                            <option>Priorité 2</option>
-                            <option>Priorité 3</option>
+                            <option>P1</option>
+                            <option>P2</option>
+                            <option>P3</option>
                         </select>
 
                         <input type="date" name="date" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
 
-                        <button id="btn-add-task" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Ajoute la Tache</button>
+                        <button id="btn-confirm-add" onclick="ajouterTache()" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Ajoute la Tache</button>
                         
-                        <button onclick="closePopup()" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
+                        <button id="btn-annuler" onclick="fermerPopup()" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
                     </form>
                 </div>
             </section>
@@ -113,47 +113,32 @@
 
             <!-- Section des Listes des Taches (ToDo , Doing , Done) -->
             <section class="task-lists flex justify-between gap-20 py-10">
-                <div class="to-do-list flex flex-col flex-1">
-                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-orange-500">
+                <div id="to-do-list" class="flex flex-col flex-1">
+                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">To Do</h1>
                         <h1 class="font-semibold">1</h1>
                     </div>
-                    <div class="to-do-tasks h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
-                        <div class="task-card bg-white h-36 m-2 rounded-md border-l-8 border-red-600 flex flex-col justify-between p-3">
-                            <h1 class="font-medium cursor-pointer">Titre de la Tache 1</h1>
-                            
-                            <div class="flex items-center gap-5">
-                                <svg width="24px" height="64px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M960 224v608c0 35.3-28.7 64-64 64H128c-35.3 0-64-28.7-64-64V224c0-17.7 14.3-32 32-32h832c17.7 0 32 14.3 32 32z" fill="#3D5AFE"></path><path d="M832 480.2c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h576c17.7 0 32 14.4 32 32zM832 672.2c0 17.7-14.3 32-32 32H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h576c17.7 0 32 14.4 32 32z" fill="#FFEA00"></path><path d="M224 319.8c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32v127.8c0 17.7-14.3 32-32 32zM800 319.8c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32s32 14.3 32 32v127.8c0 17.7-14.3 32-32 32z" fill="#536DFE"></path><path d="M660.8 704.3H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h461.4c12.1-40.6 18.6-83.5 18.6-128H224c-17.7 0-32-14.3-32-32s14.3-32 32-32h475.5c-14.2-99.8-61.3-189-130-256.3H256v95.8c0 17.7-14.3 32-32 32s-32-14.3-32-32V192H96c-17.7 0-32 14.3-32 32v608c0 35.3 28.7 64 64 64h358.9c75.1-45.2 135.9-112 173.9-191.7z" fill="#536DFE"></path><path d="M192 480.3c0 17.7 14.3 32 32 32h480v-0.2c0-21.6-1.5-42.9-4.5-63.8H224c-17.7 0-32 14.3-32 32zM192 672.3c0 17.7 14.3 32 32 32h436.8c9.8-20.5 18-41.9 24.6-64H224c-17.7 0-32 14.3-32 32z" fill="#FFFF00"></path><path d="M192 287.8c0 17.7 14.3 32 32 32s32-14.3 32-32V192h-64v95.8z" fill="#8C9EFF"></path></g></svg>
-                                <h1>2024-10-30</h1>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <h1 class="text-red-600 border-4 border-red-700 text-center font-semibold h-7 w-7">P1</h1>
-                                <div>
-                                    <button type="button" class="py-1 px-2 bg-yellow-500 rounded-sm">Modifier</button>
-                                    <button type="button" class="py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="doing-list flex flex-col flex-1">
-                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-orange-500">
-                        <h1 class="font-semibold">Doing</h1>
-                        <h1 class="font-semibold">1</h1>
-                    </div>
-                    <div class="doing-tasks h-96 bg-gray-300 mt-3 rounded-md">
+                    <div id="to-do-tasks" class="h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
                         
                     </div>
                 </div>
 
-                <div class="done-list flex flex-col flex-1">
-                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-orange-500">
+                <div id="doing-list" class="flex flex-col flex-1">
+                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
+                        <h1 class="font-semibold">Doing</h1>
+                        <h1 class="font-semibold">1</h1>
+                    </div>
+                    <div id="doing-tasks" class="h-96 bg-gray-300 mt-3 rounded-md">
+                        
+                    </div>
+                </div>
+
+                <div id="done-list" class="flex flex-col flex-1">
+                    <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">Done</h1>
                         <h1 class="font-semibold">1</h1>
                     </div>
-                    <div class="done-tasks h-96 bg-gray-300 mt-3 rounded-md">
+                    <div id="done-tasks" class="h-96 bg-gray-300 mt-3 rounded-md">
 
                     </div>
                 </div>
