@@ -65,9 +65,9 @@
                     <h1 class="text-center mb-5 font-medium text-xl">Ajouter une Nouvelle Tache</h1>
                     <form id="add-task-form" class="flex flex-col gap-4">
                         
-                        <input type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600">
+                        <input id="titre" type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600">
                         
-                        <textarea name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600"></textarea>
+                        <textarea id="description" name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600"></textarea>
 
                         <select name="status" id="status-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
                             <option>To Do</option>
@@ -112,7 +112,7 @@
             </section>
 
             <!-- Section des Listes des Taches (ToDo , Doing , Done) -->
-            <section class="task-lists flex justify-between gap-20 py-10">
+            <section class="task-lists flex justify-between gap-10 py-10">
                 <div id="to-do-list" class="flex flex-col flex-1">
                     <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">To Do</h1>

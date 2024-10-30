@@ -25,7 +25,7 @@ function creerTache(titre, priority, date , tache){
                                 <h1>${priority}</h1>
                                 <div>
                                     <button type="button" class="py-1 px-2 bg-yellow-500 rounded-sm">Modifier</button>
-                                    <button type="button" class="btn-delete py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
+                                    <button type="button" id="btn-delete" class="py-1 px-2 bg-gray-900 text-white rounded-sm">Supprimer</button>
                                 </div>
                             </div>` ;
 }
@@ -34,54 +34,84 @@ function creerTache(titre, priority, date , tache){
 //Fonction permettant de définir le couleur de border-left selon la priorité de la tache
 function themePriority(priority, tache){
     if(priority == "P1"){
-        tache.classList.add('border-l-8');
-        tache.classList.add('border-red-600');
+        tache.classList.add('border-l-8', 'border-red-600');
     }else if(priority == "P2"){
-        tache.classList.add('border-l-8');
-        tache.classList.add('border-orange-400');
+        tache.classList.add('border-l-8', 'border-orange-400');
     }else{
-        tache.classList.add('border-l-8');
-        tache.classList.add('border-green-600');
+        tache.classList.add('border-l-8', 'border-green-600');
     }
 }
 
 
 //Fonction permettant d'ajouter une Nouvelle Tache à la liste convenable (toDo, Doing, Done)
 function ajouterTache(){
-    const tacheForm = document.getElementById("add-task-form");
-    const titre = tacheForm['titre'].value;
-    const description = tacheForm['description'].value;
-    const status = tacheForm['status'].value;
-    const priority = tacheForm['priority'].value;
-    const date = tacheForm['date'].value;
+    const formulaire = document.getElementById("add-task-form");
+    const titre = formulaire['titre'].value;
+    const description = formulaire['description'].value;
+    const status = formulaire['status'].value;
+    const priority = formulaire['priority'].value;
+    const date = formulaire['date'].value;
 
-    if(status == "To Do"){
-        var targetList = document.getElementById('to-do-tasks');
-    }else if(status == "Doing"){
-        var targetList = document.getElementById('doing-tasks');
-    }else{
-        var targetList = document.getElementById('done-tasks');
+    const validation = validerForm(titre, description);
+
+    if(validation==1){
+        if(status == "To Do"){
+            var list = document.getElementById('to-do-tasks');
+        }else if(status == "Doing"){
+            var list = document.getElementById('doing-tasks');
+        }else{
+            var list = document.getElementById('done-tasks');
+        }
+    
+        const tache = document.createElement('div');
+    
+        creerTache(titre , priority , date, tache);
+    
+        list.appendChild(tache);
+        formulaire.reset();
+        fermerPopup();
+    
+        themePriority(priority , tache);
+    
+        supprimerTache(tache);
     }
 
-    const task = document.createElement('div');
-
-    creerTache(titre , priority , date, task);
-
-    targetList.appendChild(task);
-    tacheForm.reset();
-    fermerPopup();
-
-    themePriority(priority , task);
-
-    deleteTask(task);
+    
 }
 
 
 //Fonction permettant de Supprimer une tache
 function supprimerTache(tache){
-    tache.querySelector(".btn-delete").addEventListener("click", function(){
+    tache.querySelector("#btn-delete").addEventListener("click", function(){
         const confirmation = confirm("Do you really want to delete this task ?");
-        if(confirmation==true)
-        tache.remove();
+        if(confirmation==true){
+            tache.remove();
+        }
     })
+}
+
+
+//Fonction de Validation des Champs de Formulaire d'Ajout d'une Nouvelle Tache
+function validerForm(titre, description) {
+    let valid = 1;
+    titre = titre.trim();
+    description = description.trim();
+
+    if (titre.length == 0) {
+        document.getElementById("titre").classList.add("placeholder:text-red-600", "placeholder:font-medium");
+        valid = 0 ;
+        return valid ;
+    }else{
+        document.getElementById("titre").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
+    }
+
+    if (description.length == 0) {
+        document.getElementById("description").classList.add("placeholder:text-red-600", "placeholder:font-medium");
+        valid = 0 ;
+        return valid ;
+    }else{
+        document.getElementById("description").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
+    }
+
+    return valid; 
 }
