@@ -77,3 +77,11 @@ function ajouterTache(){
 }
 
 
+//Fonction permettant de Supprimer une tache
+function supprimerTache(tache){
+    tache.querySelector(".btn-delete").addEventListener("click", function(){
+        const confirmation = confirm("Do you really want to delete this task ?");
+        if(confirmation==true)
+        tache.remove();
+    })
+}
