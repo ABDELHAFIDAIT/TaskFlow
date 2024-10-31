@@ -52,7 +52,7 @@ function ajouterTache(){
     const priority = formulaire['priority'].value;
     const date = formulaire['date'].value;
 
-    const validation = validerForm(titre, description);
+    const validation = validerForm(titre, description, date);
 
     if(validation==1){
         if(status == "To Do"){
@@ -92,7 +92,7 @@ function supprimerTache(tache){
 
 
 //Fonction de Validation des Champs de Formulaire d'Ajout d'une Nouvelle Tache
-function validerForm(titre, description) {
+function validerForm(titre, description, date) {
     let valid = 1;
     titre = titre.trim();
     description = description.trim();
@@ -111,6 +111,14 @@ function validerForm(titre, description) {
         return valid ;
     }else{
         document.getElementById("description").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
+    }
+
+    if (!date) {
+        document.getElementById("date").classList.add("text-red-600", "font-medium");
+        valid = 0 ;
+        return valid ;
+    }else{
+        document.getElementById("date").classList.remove("text-red-600", "font-medium");
     }
 
     return valid; 
