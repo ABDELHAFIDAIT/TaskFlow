@@ -60,36 +60,6 @@
                 </div>
             </section>
 
-            <section id="add-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
-                <div class="add-task-popup bg-white px-10 pt-8 pb-5 rounded-md">
-                    <h1 class="text-center mb-5 font-medium text-xl">Ajouter une Nouvelle Tache</h1>
-                    <form id="add-task-form" class="flex flex-col gap-4">
-                        
-                        <input id="titre" type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600">
-                        
-                        <textarea id="description" name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600"></textarea>
-
-                        <select name="status" id="status-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
-                            <option>To Do</option>
-                            <option>Doing</option>
-                            <option>Done</option>
-                        </select>
-
-                        <select name="priority" id="priority-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
-                            <option>P1</option>
-                            <option>P2</option>
-                            <option>P3</option>
-                        </select>
-
-                        <input type="date" name="date" id="date" class="h-10 px-5 rounded-sm bg-gray-300 outline-none">
-
-                        <button id="btn-confirm-add" onclick="ajouterTache()" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Ajoute la Tache</button>
-                        
-                        <button id="btn-annuler" onclick="fermerPopup()" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
-                    </form>
-                </div>
-            </section>
-
             <!-- Section des Sélécteurs de Filtrage et de Tri -->
             <section class="filter-sort flex justify-end items-center py-10">
                 <div class="filter">
@@ -116,7 +86,7 @@
                 <div id="to-do-list" class="flex flex-col flex-1">
                     <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">To Do</h1>
-                        <h1 class="font-semibold">1</h1>
+                        <h1 class="count font-semibold">0</h1>
                     </div>
                     <div id="to-do-tasks" class="h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
                         
@@ -126,7 +96,7 @@
                 <div id="doing-list" class="flex flex-col flex-1">
                     <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">Doing</h1>
-                        <h1 class="font-semibold">1</h1>
+                        <h1 class="count font-semibold">0</h1>
                     </div>
                     <div id="doing-tasks" class="h-96 bg-gray-300 mt-3 rounded-md">
                         
@@ -136,7 +106,7 @@
                 <div id="done-list" class="flex flex-col flex-1">
                     <div class="list-title flex justify-between flex-1 border-b-2 pb-3 px-3 border-blue-800">
                         <h1 class="font-semibold">Done</h1>
-                        <h1 class="font-semibold">1</h1>
+                        <h1 class="count font-semibold">0</h1>
                     </div>
                     <div id="done-tasks" class="h-96 bg-gray-300 mt-3 rounded-md">
 
@@ -145,6 +115,124 @@
             </section>
 
             
+
+            <!-- Ajouter une Tache -->
+            <section id="add-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
+                <div class="add-task-popup bg-white px-10 pt-8 pb-5 rounded-md">
+                    <h1 class="text-center mb-5 font-medium text-xl">Ajouter une Nouvelle Tache</h1>
+                    <form id="add-task-form" class="flex flex-col gap-4">
+                        
+                        <input id="titre" type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600" required>
+                        
+                        <textarea id="description" name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600" required></textarea>
+
+                        <select name="status" id="status-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" required>
+                            <option>To Do</option>
+                            <option>Doing</option>
+                            <option>Done</option>
+                        </select>
+
+                        <select name="priority" id="priority-select" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" required>
+                            <option value="P1">P1 (Haute)</option>
+                            <option value="P2">P2 (Moyenne)</option>
+                            <option value="P3">P3 (faible)</option>
+                        </select>
+
+                        <input type="date" name="date" id="date" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" min="" required>
+
+                        <button id="btn-confirm-add" onclick="ajouterTache()" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Ajoute la Tache</button>
+                        
+                        <button id="btn-annuler" onclick="fermerPopup()" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Afficher une Tache -->
+            <section id="display-details" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
+                <div class="bg-white overflow-hidden shadow rounded-lg border w-1/2">
+                    <div class="flex justify-between items-center px-4 py-5 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Détails de la Tache
+                        </h3>
+                        <svg id="close-display" class="cursor-pointer" width="32px" height="64px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>Close</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Close"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> <line x1="16.9999" y1="7" x2="7.00001" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </line> <line x1="7.00006" y1="7" x2="17" y2="16.9999" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </line> </g> </g> </g></svg>
+                    </div>
+                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                        <dl class="sm:divide-y sm:divide-gray-200">
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Titre
+                                </dt>
+                                <dd id="details-title" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Description
+                                </dt>
+                                <dd id="details-description" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Status
+                                </dt>
+                                <dd id="details-status" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Priorité
+                                </dt>
+                                <dd id="details-priority" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    
+                                </dd>
+                            </div>
+                            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Date d'Echéance
+                                </dt>
+                                <dd id="details-date" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modifier une Tache -->
+            <section id="edit-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
+                <div class="bg-white w-1/2 px-10 pt-8 pb-5 rounded-md">
+                    <h1 class="text-center mb-5 font-medium text-xl">Modifier la Tache</h1>
+                    <form id="edit-task-form" class="flex flex-col gap-4">
+                        
+                        <input id="edit-title" type="text" name="titre" placeholder="Entrer le Titre de votre Tache" class="h-10 px-5 rounded-sm bg-gray-300 outline-none placeholder:text-gray-600" required>
+                        
+                        <textarea id="edit-description" name="description" placeholder="Donner une description à votre tache.." class="h-24 px-5 py-2 bg-gray-300 placeholder:text-gray-600" required></textarea>
+
+                        <select name="status" id="edit-status" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" required>
+                            <option>To Do</option>
+                            <option>Doing</option>
+                            <option>Done</option>
+                        </select>
+
+                        <select name="priority" id="edit-priority" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" required>
+                            <option value="P1">P1 (Haute)</option>
+                            <option value="P2">P2 (Moyenne)</option>
+                            <option value="P3">P3 (faible)</option>
+                        </select>
+
+                        <input type="date" name="date" id="edit-date" class="h-10 px-5 rounded-sm bg-gray-300 outline-none" min="" required>
+
+                        <button id="btn-confirm-edit" type="button" class="h-10 mt-5 font-medium bg-blue-600 text-white">Enregistrer</button>
+                        
+                        <button id="btn-cancel-edit" type="button" class="h-10 font-medium bg-gray-300">Annuler</button>
+                    </form>
+                </div>
+            </section>
             
             
 
