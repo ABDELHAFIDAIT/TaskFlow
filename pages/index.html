@@ -16,6 +16,7 @@
         <title>TaskFlow</title>
     </head>
     <body>
+        <!-- Start of Header Section -->
         <header class="header">
             <div
                 class="header-container flex justify-between items-center mx-20 my-0 py-4">
@@ -34,6 +35,9 @@
                 </div>
             </div>
         </header>
+        <!-- End of Header Section -->
+
+
 
         <main class="main mx-20 my-0">
             <!-- Section d'Ajout des Taches et Barre de Recherche -->
@@ -112,11 +116,9 @@
 
                     </div>
                 </div>
-            </section>
+            </section>            
 
-            
-
-            <!-- Ajouter une Tache -->
+            <!-- Popup Formulaire pour Ajouter une Tache -->
             <section id="add-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
                 <div class="add-task-popup bg-white px-10 pt-8 pb-5 rounded-md">
                     <h1 class="text-center mb-5 font-medium text-xl">Ajouter une Nouvelle Tache</h1>
@@ -147,7 +149,7 @@
                 </div>
             </section>
 
-            <!-- Afficher une Tache -->
+            <!-- Popup Formulaire pour Afficher une Tache -->
             <section id="display-details" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
                 <div class="bg-white overflow-hidden shadow rounded-lg border w-1/2">
                     <div class="flex justify-between items-center px-4 py-5 sm:px-6">
@@ -203,7 +205,7 @@
                 </div>
             </section>
 
-            <!-- Modifier une Tache -->
+            <!-- Popup Formulaire pour Modifier une Tache -->
             <section id="edit-task-popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden">
                 <div class="bg-white w-1/2 px-10 pt-8 pb-5 rounded-md">
                     <h1 class="text-center mb-5 font-medium text-xl">Modifier la Tache</h1>
@@ -233,9 +235,6 @@
                     </form>
                 </div>
             </section>
-            
-            
-
         </main>
 
         <script src="../assets/js/popup.js"></script>
