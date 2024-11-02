@@ -1,3 +1,4 @@
+//Fonction permettant de définir un min pour la Date d'une Tache
 const today = new Date().toISOString().split("T")[0];
 document.getElementById("date").setAttribute("min" , today);
 document.getElementById("edit-date").setAttribute("min" , today);
@@ -91,7 +92,7 @@ function ajouterTache(){
 }
 
 
-
+//Fonction de Mise à Jour des Compteurs de Chaque Liste
 function updateCompteur(){
     document.getElementById('to-do-list').querySelector(".count").textContent = document.getElementById("to-do-tasks").childElementCount;
     document.getElementById('doing-list').querySelector(".count").textContent = document.getElementById("doing-tasks").childElementCount;
@@ -116,7 +117,7 @@ function afficherDetails(tache, titre, description, status, priority, date){
 }
 
 
-
+//Fonction de Modification d'une Tache
 function modifierTache(tache){
     const editForm = document.getElementById("edit-task-form");
     tache.querySelector("#btn-edit").addEventListener("click" , function(){
@@ -141,8 +142,6 @@ function modifierTache(tache){
 
         document.getElementById("edit-task-popup").classList.remove("hidden");
 
-        // console.log(tache);
-
         editForm.querySelector("#btn-confirm-edit").onclick = function(){
             const validEdit = validerEditForm(newTitre.value , newDesc.value , newDate.value);
             if(validEdit == 1){
@@ -151,8 +150,6 @@ function modifierTache(tache){
                 editPriority.textContent = newPriority.value ;
                 editDate.textContent = newDate.value ;
                 editStatus.textContent = newStatus.value ;
-
-                // console.log(tache);
 
                 if(newStatus.value == "To Do"){
                     document.getElementById('to-do-tasks').appendChild(tache);
@@ -241,7 +238,7 @@ function validerForm(titre, description, date) {
 }
 
 
-
+//Fonction de Validation des Champs de Formulaire de Modification d'une Nouvelle Tache
 function validerEditForm(titre, description, date) {
     let valid = 1;
     titre = titre.trim();
