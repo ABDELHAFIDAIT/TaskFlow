@@ -206,7 +206,7 @@ function supprimerTache(tache) {
 
 //Fonction permettant de Supprimer tous les Taches d'une Liste
 function supprimerListe() {
-
+    //Vider la Liste To Do
     if(document.getElementById('to-do-list').querySelector(".count").innerHTML !== "0") {
         document.querySelector("#clear-todo-list").onclick = function () {
             const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
@@ -216,7 +216,7 @@ function supprimerListe() {
             }
         }
     }
-
+    //Vider la Liste Doing
     if(document.getElementById('doing-list').querySelector(".count").innerHTML !== "0") {
         document.querySelector("#clear-doing-list").onclick = function () {
             const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
@@ -226,7 +226,7 @@ function supprimerListe() {
             }
         }
     }
-
+    //Vider la Liste Done
     if(document.getElementById('done-list').querySelector(".count").innerHTML !== "0") {
         document.querySelector("#clear-done-list").onclick = function () {
             const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
