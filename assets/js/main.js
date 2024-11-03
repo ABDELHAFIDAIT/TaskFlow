@@ -19,7 +19,7 @@ function fermerPopup() {
 
 //Fonction de Création du "div" d'une Nouvelle Tache
 function creerTache(titre, description, priority, date, status, tache) {
-    tache.className = "to-do-card bg-white m-2 rounded-md flex flex-col justify-between p-3";
+    tache.className = "bg-white m-2 rounded-md flex flex-col justify-between p-3";
 
     tache.innerHTML = `<h1 id="display" class="task-title font-medium cursor-pointer hover:underline hover:text-blue-500">${titre}</h1>
                        <p class="task-description hidden">${description}</p>

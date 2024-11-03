@@ -44,7 +44,7 @@
             <section class="add-tasks flex justify-between items-center py-10">
                 <div class="add-task">
                     <button id="btn-add-task" onclick="ouvrirPopup()"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded">
+                        class="bg-blue-500 hover:bg-blue-700 hover:scale-105 transition-all duration-500 text-white font-normal py-2 px-4 rounded">
                         Ajouter une Tache +
                     </button>
                 </div>
@@ -58,7 +58,7 @@
 
                 <div class="add-multiple-tasks">
                     <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-normal py-2 px-4 rounded">
+                        class="bg-blue-500 hover:bg-blue-700 hover:scale-105 transition-all duration-500 text-white font-normal py-2 px-4 rounded">
                         Ajouter Multiple Taches +
                     </button>
                 </div>
@@ -69,18 +69,18 @@
                 <div class="filter">
                     <label for="filter">Filtrer :</label>
                     <select name="filter" class="filter-select ml-10 bg-gray-200 rounded-sm outline-none cursor-pointer">
-                        <option value="filter-option">Default</option>
-                        <option value="filter-option">Priorité 1</option>
-                        <option value="filter-option">Priorité 2</option>
-                        <option value="filter-option">Priorité 3</option>
+                        <option value="default">Default</option>
+                        <option value="P1">Priorité 1</option>
+                        <option value="P2">Priorité 2</option>
+                        <option value="P3">Priorité 3</option>
                     </select>
                 </div>
                 <div class="sort  ml-10">
                     <label for="sort">Trier :</label>
                     <select name="sort" class="sort-select ml-10 bg-gray-200 rounded-sm outline-none cursor-pointer">
-                        <option value="sort-option">Default</option>
-                        <option value="sort-option">Priorité</option>
-                        <option value="sort-option">Date d'Echéance</option>
+                        <option value="">Default</option>
+                        <option value="">Priorité</option>
+                        <option value="">Date d'Echéance</option>
                     </select>
                 </div>
             </section>
@@ -88,10 +88,10 @@
             <!-- Section des Listes des Taches (ToDo , Doing , Done) -->
             <section class="task-lists flex justify-between gap-10 py-10">
                 <div id="to-do-list" class="flex flex-col flex-1">
-                    <div class="list-title flex justify-between items-center flex-1 border-b-2 pb-3 px-3 border-blue-800">
+                    <div class="list-title flex justify-between items-center flex-1 border-b-2 px-3 border-black bg-green-300 rounded-t-xl">
                         <h1 class="font-semibold">To Do</h1>
                         <h1 class="count font-semibold">0</h1>
-                        <svg id="clear-todo-list" class="cursor-pointer" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
+                        <svg id="clear-todo-list" class="cursor-pointer hover:scale-125 transition-all duration-500" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
                     </div>
                     <div id="to-do-tasks" class="h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
                         
@@ -99,10 +99,10 @@
                 </div>
 
                 <div id="doing-list" class="flex flex-col flex-1">
-                    <div class="list-title flex justify-between items-center flex-1 border-b-2 pb-3 px-3 border-blue-800">
+                    <div class="list-title flex justify-between items-center flex-1 border-b-2 px-3 border-black bg-yellow-200 rounded-t-xl">
                         <h1 class="font-semibold">Doing</h1>
                         <h1 class="count font-semibold">0</h1>
-                        <svg id="clear-doing-list"  class="cursor-pointer" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
+                        <svg id="clear-doing-list"  class="cursor-pointer hover:scale-125 transition-all duration-500" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
                     </div>
                     <div id="doing-tasks" class="h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
                         
@@ -110,10 +110,10 @@
                 </div>
 
                 <div id="done-list" class="flex flex-col flex-1">
-                    <div id="clear-done-list"  class="flex justify-between items-center flex-1 border-b-2 pb-3 px-3 border-blue-800">
+                    <div class="flex justify-between items-center flex-1 border-b-2 px-3 border-black bg-purple-300 rounded-t-xl">
                         <h1 class="font-semibold">Done</h1>
                         <h1 class="count font-semibold">0</h1>
-                        <svg class="clear-list cursor-pointer" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
+                        <svg id="clear-done-list" class="cursor-pointer hover:scale-125 transition-all duration-500" width="32px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M8 7a1 1 0 0 0 0 2h12a1 1 0 1 0 0-2H8ZM5 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM3 16a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z" fill="#000000"></path></g></svg>
                     </div>
                     <div id="done-tasks" class="h-96 bg-gray-300 mt-3 rounded-md overflow-auto">
 
