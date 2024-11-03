@@ -88,6 +88,8 @@ function ajouterTache(){
         modifierTache(tache);
 
         supprimerTache(tache);
+
+        supprimerListe();
     }   
 }
 
@@ -190,8 +192,6 @@ function modifierTache(tache){
 }
 
 
-
-
 //Fonction permettant de Supprimer une tache
 function supprimerTache(tache){
     tache.querySelector("#btn-delete").addEventListener("click", function(){
@@ -201,6 +201,34 @@ function supprimerTache(tache){
             updateCompteur();
         }
     })
+}
+
+
+//Fonction permettant de Supprimer tous les Taches d'une Liste
+function supprimerListe(){
+    document.querySelector("#clear-todo-list").onclick = function(){
+        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+        if(valid){
+            document.getElementById("to-do-tasks").innerHTML = "";
+            updateCompteur();
+        }
+    }
+
+    document.querySelector("#clear-doing-list").onclick = function(){
+        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+        if(valid){
+            document.getElementById("doing-tasks").innerHTML = "";
+            updateCompteur();
+        }
+    }
+
+    document.querySelector("#clear-done-list").onclick = function(){
+        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+        if(valid){
+            document.getElementById("done-tasks").innerHTML = "";
+            updateCompteur();
+        }
+    }
 }
 
 
