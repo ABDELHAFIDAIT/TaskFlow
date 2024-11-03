@@ -1,7 +1,7 @@
 //Fonction permettant de définir un min pour la Date d'une Tache
 const today = new Date().toISOString().split("T")[0];
-document.getElementById("date").setAttribute("min" , today);
-document.getElementById("edit-date").setAttribute("min" , today);
+document.getElementById("date").setAttribute("min", today);
+document.getElementById("edit-date").setAttribute("min", today);
 
 
 
@@ -18,9 +18,9 @@ function fermerPopup() {
 
 
 //Fonction de Création du "div" d'une Nouvelle Tache
-function creerTache(titre,description, priority, date, status, tache){
+function creerTache(titre, description, priority, date, status, tache) {
     tache.className = "to-do-card bg-white m-2 rounded-md flex flex-col justify-between p-3";
-        
+
     tache.innerHTML = `<h1 id="display" class="task-title font-medium cursor-pointer hover:underline hover:text-blue-500">${titre}</h1>
                        <p class="task-description hidden">${description}</p>
                             <div class="flex items-center gap-5">
@@ -40,19 +40,19 @@ function creerTache(titre,description, priority, date, status, tache){
 
 
 //Fonction permettant de définir le couleur de border-left selon la priorité de la tache
-function themePriority(priority, tache){
-    if(priority == "P1"){
+function themePriority(priority, tache) {
+    if (priority == "P1") {
         tache.classList.add('border-l-8', 'border-red-600');
-    }else if(priority == "P2"){
+    } else if (priority == "P2") {
         tache.classList.add('border-l-8', 'border-orange-400');
-    }else{
+    } else {
         tache.classList.add('border-l-8', 'border-green-600');
     }
 }
 
 
 //Fonction permettant d'ajouter une Nouvelle Tache à la liste convenable (toDo, Doing, Done)
-function ajouterTache(){
+function ajouterTache() {
     const formulaire = document.getElementById("add-task-form");
     const titre = formulaire['titre'].value;
     const description = formulaire['description'].value;
@@ -62,26 +62,26 @@ function ajouterTache(){
 
     const validation = validerForm(titre, description, date);
 
-    if(validation==1){
-        if(status == "To Do"){
+    if (validation == 1) {
+        if (status == "To Do") {
             var list = document.getElementById('to-do-tasks');
-        }else if(status == "Doing"){
+        } else if (status == "Doing") {
             var list = document.getElementById('doing-tasks');
-        }else{
+        } else {
             var list = document.getElementById('done-tasks');
         }
-    
+
         const tache = document.createElement('div');
-    
-        creerTache(titre ,description, priority , date, status, tache);
+
+        creerTache(titre, description, priority, date, status, tache);
 
         list.appendChild(tache);
         formulaire.reset();
         fermerPopup();
-        
+
         updateCompteur();
-        
-        themePriority(priority , tache);
+
+        themePriority(priority, tache);
 
         afficherDetails(tache, titre, description, status, priority, date);
 
@@ -90,12 +90,12 @@ function ajouterTache(){
         supprimerTache(tache);
 
         supprimerListe();
-    }   
+    }
 }
 
 
 //Fonction de Mise à Jour des Compteurs de Chaque Liste
-function updateCompteur(){
+function updateCompteur() {
     document.getElementById('to-do-list').querySelector(".count").textContent = document.getElementById("to-do-tasks").childElementCount;
     document.getElementById('doing-list').querySelector(".count").textContent = document.getElementById("doing-tasks").childElementCount;
     document.getElementById('done-list').querySelector(".count").textContent = document.getElementById("done-tasks").childElementCount;
@@ -103,8 +103,8 @@ function updateCompteur(){
 
 
 //Fonction permettant d'Afficher les détails d'une tache
-function afficherDetails(tache, titre, description, status, priority, date){
-    tache.querySelector("#display").addEventListener("click" , function(){
+function afficherDetails(tache, titre, description, status, priority, date) {
+    tache.querySelector("#display").addEventListener("click", function () {
         document.getElementById("details-title").textContent = titre;
         document.getElementById("details-description").textContent = description;
         document.getElementById("details-status").textContent = status;
@@ -113,63 +113,63 @@ function afficherDetails(tache, titre, description, status, priority, date){
         document.getElementById("display-details").classList.remove("hidden");
     });
 
-    document.getElementById("close-display").onclick = function(){
+    document.getElementById("close-display").onclick = function () {
         document.getElementById("display-details").classList.add("hidden");
     }
 }
 
 
 //Fonction de Modification d'une Tache
-function modifierTache(tache){
+function modifierTache(tache) {
     const editForm = document.getElementById("edit-task-form");
-    tache.querySelector("#btn-edit").addEventListener("click" , function(){
+    tache.querySelector("#btn-edit").addEventListener("click", function () {
 
-        let editTitre= tache.querySelector(".task-title");
-        let editDescription= tache.querySelector(".task-description");
-        let editPriority= tache.querySelector(".task-priority");
+        let editTitre = tache.querySelector(".task-title");
+        let editDescription = tache.querySelector(".task-description");
+        let editPriority = tache.querySelector(".task-priority");
         let editStatus = tache.querySelector(".task-status");
-        let editDate= tache.querySelector(".task-date");
-        
-        const newTitre = editForm.querySelector("#edit-title");
-        const newDesc  = editForm.querySelector("#edit-description");
-        const newStatus = editForm.querySelector("#edit-status");
-        const newPriority  = editForm.querySelector("#edit-priority");
-        const newDate  = editForm.querySelector("#edit-date");
+        let editDate = tache.querySelector(".task-date");
 
-        newTitre.value = editTitre.textContent ;
-        newDesc.value = editDescription.textContent ;
-        newStatus.value = editStatus.textContent ;
-        newPriority.value = editPriority.textContent ;
-        newDate.value = editDate.textContent ;
+        const newTitre = editForm.querySelector("#edit-title");
+        const newDesc = editForm.querySelector("#edit-description");
+        const newStatus = editForm.querySelector("#edit-status");
+        const newPriority = editForm.querySelector("#edit-priority");
+        const newDate = editForm.querySelector("#edit-date");
+
+        newTitre.value = editTitre.textContent;
+        newDesc.value = editDescription.textContent;
+        newStatus.value = editStatus.textContent;
+        newPriority.value = editPriority.textContent;
+        newDate.value = editDate.textContent;
 
         document.getElementById("edit-task-popup").classList.remove("hidden");
 
-        editForm.querySelector("#btn-confirm-edit").onclick = function(){
-            const validEdit = validerEditForm(newTitre.value , newDesc.value , newDate.value);
-            if(validEdit == 1){
-                editTitre.textContent = newTitre.value ;
-                editDescription.textContent = newDesc.value ;
-                editPriority.textContent = newPriority.value ;
-                editDate.textContent = newDate.value ;
-                editStatus.textContent = newStatus.value ;
+        editForm.querySelector("#btn-confirm-edit").onclick = function () {
+            const validEdit = validerEditForm(newTitre.value, newDesc.value, newDate.value);
+            if (validEdit == 1) {
+                editTitre.textContent = newTitre.value;
+                editDescription.textContent = newDesc.value;
+                editPriority.textContent = newPriority.value;
+                editDate.textContent = newDate.value;
+                editStatus.textContent = newStatus.value;
 
-                if(newStatus.value == "To Do"){
+                if (newStatus.value == "To Do") {
                     document.getElementById('to-do-tasks').appendChild(tache);
-                }else if(newStatus.value == "Doing"){
+                } else if (newStatus.value == "Doing") {
                     document.getElementById('doing-tasks').appendChild(tache);
-                }else{
+                } else {
                     document.getElementById('done-tasks').appendChild(tache);
                 }
 
-                if(newPriority.value == "P1"){
+                if (newPriority.value == "P1") {
                     tache.classList.add('border-red-600');
                     tache.classList.remove('border-orange-400');
                     tache.classList.remove('border-green-600');
-                }else if(newPriority.value == "P2"){
+                } else if (newPriority.value == "P2") {
                     tache.classList.add('border-orange-400');
                     tache.classList.remove('border-red-600');
                     tache.classList.remove('border-green-600');
-                }else{
+                } else {
                     tache.classList.add('border-green-600');
                     tache.classList.remove('border-orange-400');
                     tache.classList.remove('border-red-600');
@@ -185,7 +185,7 @@ function modifierTache(tache){
         }
     });
 
-    document.getElementById("btn-cancel-edit").onclick = function(){
+    document.getElementById("btn-cancel-edit").onclick = function () {
         document.getElementById("edit-task-popup").classList.add("hidden");
         editForm.reset();
     }
@@ -193,10 +193,10 @@ function modifierTache(tache){
 
 
 //Fonction permettant de Supprimer une tache
-function supprimerTache(tache){
-    tache.querySelector("#btn-delete").addEventListener("click", function(){
+function supprimerTache(tache) {
+    tache.querySelector("#btn-delete").addEventListener("click", function () {
         const confirmation = confirm("Do you really want to delete this task ?");
-        if(confirmation==true){
+        if (confirmation == true) {
             tache.remove();
             updateCompteur();
         }
@@ -205,28 +205,35 @@ function supprimerTache(tache){
 
 
 //Fonction permettant de Supprimer tous les Taches d'une Liste
-function supprimerListe(){
-    document.querySelector("#clear-todo-list").onclick = function(){
-        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
-        if(valid){
-            document.getElementById("to-do-tasks").innerHTML = "";
-            updateCompteur();
+function supprimerListe() {
+
+    if(document.getElementById('to-do-list').querySelector(".count").innerHTML !== "0") {
+        document.querySelector("#clear-todo-list").onclick = function () {
+            const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+            if (valid) {
+                document.getElementById("to-do-tasks").innerHTML = "";
+                updateCompteur();
+            }
         }
     }
 
-    document.querySelector("#clear-doing-list").onclick = function(){
-        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
-        if(valid){
-            document.getElementById("doing-tasks").innerHTML = "";
-            updateCompteur();
+    if(document.getElementById('doing-list').querySelector(".count").innerHTML !== "0") {
+        document.querySelector("#clear-doing-list").onclick = function () {
+            const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+            if (valid) {
+                document.getElementById("doing-tasks").innerHTML = "";
+                updateCompteur();
+            }
         }
     }
 
-    document.querySelector("#clear-done-list").onclick = function(){
-        const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
-        if(valid){
-            document.getElementById("done-tasks").innerHTML = "";
-            updateCompteur();
+    if(document.getElementById('done-list').querySelector(".count").innerHTML !== "0") {
+        document.querySelector("#clear-done-list").onclick = function () {
+            const valid = confirm("Voulez-vous vraiment supprimer toutes les Taches de cette liste ?");
+            if (valid) {
+                document.getElementById("done-tasks").innerHTML = "";
+                updateCompteur();
+            }
         }
     }
 }
@@ -240,29 +247,29 @@ function validerForm(titre, description, date) {
 
     if (titre.length == 0) {
         document.getElementById("titre").classList.add("placeholder:text-red-600", "placeholder:font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("titre").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
     }
 
     if (description.length == 0) {
         document.getElementById("description").classList.add("placeholder:text-red-600", "placeholder:font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("description").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
     }
 
     if (!date) {
         document.getElementById("date").classList.add("text-red-600", "font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("date").classList.remove("text-red-600", "font-medium");
     }
 
-    return valid; 
+    return valid;
 }
 
 
@@ -274,27 +281,27 @@ function validerEditForm(titre, description, date) {
 
     if (titre.length == 0) {
         document.getElementById("edit-title").classList.add("placeholder:text-red-600", "placeholder:font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("edit-title").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
     }
 
     if (description.length == 0) {
         document.getElementById("edit-description").classList.add("placeholder:text-red-600", "placeholder:font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("edit-description").classList.remove("placeholder:text-red-600", "placeholder:font-medium");
     }
 
     if (!date) {
         document.getElementById("edit-date").classList.add("text-red-600", "font-medium");
-        valid = 0 ;
-        return valid ;
-    }else{
+        valid = 0;
+        return valid;
+    } else {
         document.getElementById("edit-date").classList.remove("text-red-600", "font-medium");
     }
 
-    return valid; 
+    return valid;
 }
