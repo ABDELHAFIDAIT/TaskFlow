@@ -42,17 +42,17 @@
 
 
 
-        <main class="main mx-20 my-0">
+        <main class="main lg:mx-16 md:mx-10 mx-4 my-0">
             <!-- Section d'Ajout des Taches et Barre de Recherche -->
-            <section class="add-tasks flex justify-between items-center py-10">
+            <section class="add-tasks flex flex-col  gap-4 lg:flex-row justify-between items-center py-4 lg:py-10">
                 <div class="add-task">
                     <button id="btn-add-task" onclick="ouvrirPopup()"
-                        class="bg-blue-500 hover:bg-blue-700 hover:scale-105 transition-all duration-500 text-white font-normal py-2 px-4 rounded">
+                        class="bg-blue-500 hover:bg-blue-700  hover:scale-105 transition-all duration-500 text-white font-normal py-2 px-4 rounded">
                         Ajouter une Tache +
                     </button>
                 </div>
 
-                <div class="task-search">
+                <div class="task-search lg:order-none -order-1">
                     <form action="">
                         <input type="text" class="search-input bg-gray-200 rounded-sm border-none outline-none" placeholder="Search..">
                         <button type="submit" class="search-btn text-white hover:bg-blue-800">Search</button>
@@ -68,7 +68,7 @@
             </section>
 
             <!-- Section des Sélécteurs de Filtrage et de Tri -->
-            <section class="filter-sort flex justify-end items-center py-10">
+            <section class="filter-sort flex flex-col sm:flex-row gap-4 justify-end items-center py-4 lg:py-10">
                 <div class="filter">
                     <label for="filter">Filtrer :</label>
                     <select name="filter" class="filter-select ml-10 bg-gray-200 rounded-sm outline-none cursor-pointer">
@@ -89,7 +89,7 @@
             </section>
 
             <!-- Section des Listes des Taches (ToDo , Doing , Done) -->
-            <section class="task-lists flex justify-between gap-10 py-10">
+            <section class="task-lists flex flex-col lg:flex-row justify-between gap-10 py-4 lg:py-10">
                 <div id="to-do-list" class="flex flex-col flex-1">
                     <div class="list-title flex justify-between items-center flex-1 border-b-2 px-3 border-black bg-green-300 rounded-t-xl">
                         <h1 class="font-semibold">To Do</h1>
